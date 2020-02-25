@@ -9,9 +9,10 @@ cat conf.env > $tmpfile
 git clean -f
 git checkout .
 
+git pull
+
 cat $tmpfile > conf.env
 
-git pull
 docker-compose pull
 docker-compose build
 docker-compose up -d
