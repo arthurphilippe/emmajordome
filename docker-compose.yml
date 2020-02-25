@@ -3,10 +3,12 @@ services:
   bot:
     build:
       context: .
-    # volumes:
-    # - ./media:/usr/src/app/media:ro
-    # - ./Index.js:/usr/src/app/Index.js:ro
-    # - ./commandes:/usr/src/app/commandes:ro
-    # - ./Token_PetiteSorciere.txt:/usr/src/app/Token_PetiteSorciere.txt
     restart: on-failure
     env_file: variables.env
+
+  database:
+    image: mongo
+    restart: always
+    volumes:
+      - "mongodata:/data/db"
+    env_file: conf.env
