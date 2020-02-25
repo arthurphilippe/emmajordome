@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -e
-git checkout .
+git clean
 git pull
 docker-compose pull
 docker-compose build
