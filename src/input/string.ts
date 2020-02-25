@@ -35,3 +35,7 @@ scene.on("text", (ctx) => {
     ctx.scene.leave();
     state.resolve(ctx.message.text);
 });
+
+scene.on("message", (ctx) => {
+    ctx.reply("Please only send me text.");
+});
