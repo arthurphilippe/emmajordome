@@ -58,7 +58,6 @@ export class Occurences {
     }
 
     generateInlineButtons(item: Occurence) {
-        console.log(item);
         if (!item.closed) {
             return [
                 telegraf.Markup.callbackButton("❌", `task;cancel;${item._id.toHexString()}`),

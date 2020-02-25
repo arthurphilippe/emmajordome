@@ -1,8 +1,6 @@
 import myContext from "./Context";
 import * as mongodb from "mongodb";
 
-import Crate, * as crate from "./Crate";
-import * as account from "./account";
 import * as task from "./task";
 
 export default class Db {
@@ -20,8 +18,6 @@ export default class Db {
     }
     get components() {
         return {
-            accounts: new account.Accounts(this.db),
-            crates: new crate.Crates(this.db),
             tasks: new task.Tasks(this.db),
             occurences: new task.Occurences(this.db),
         };

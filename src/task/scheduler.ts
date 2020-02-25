@@ -28,16 +28,12 @@ export class Scheduler {
             .toArray();
 
         if (results.length) {
-            console.log("next task to scedule is " + results[0].name);
-            console.log(results[0]);
             let now = moment().valueOf();
             let target = moment(results[0].nextOn).valueOf();
-            console.log(target - now);
             if (now < target)
                 this.timeout = setTimeout(this.createOccurances.bind(this), target - now);
             else this.createOccurances();
         } else {
-            console.log("nothing to schedule");
         }
     }
 
@@ -46,8 +42,6 @@ export class Scheduler {
             .find({ nextOn: { $lte: new Date() } })
             .sort({ nextOn: 1 })
             .toArray();
-        console.log("due tasks are:");
-        console.log(tasks);
         return tasks;
     }
 

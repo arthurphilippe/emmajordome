@@ -16,7 +16,6 @@ async function prepareNextOccurenceDate(at: { minutes: number; hours: number }):
         .add(at.hours, "hours")
         .add(at.minutes, "minutes");
     if (occur <= now) {
-        console.log("will occur tomorrow");
         occur.add(1, "day");
     }
     return occur.toDate();
