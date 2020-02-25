@@ -51,7 +51,7 @@ import Db from "./Db";
         if (ctx.scene.session.current) ctx.reply(`You are in ${ctx.scene.session.current}`);
     });
 
-    console.log("Ready.");
+    console.log("Ready!");
     bot.catch((err: any) => {
         console.error(err);
         db.client.close();
