@@ -12,8 +12,7 @@
     "devDependencies": {
         "@types/mongodb": "^3.3.14",
         "ts-node": "^8.6.2",
-        "typescript": "^3.7.5",
-        "@types/moment": "^2.13.0"
+        "typescript": "^3.7.5"
     },
     "dependencies": {
         "currency.js": "^1.2.2",

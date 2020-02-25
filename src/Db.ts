@@ -7,15 +7,19 @@ export default class Db {
     client: mongodb.MongoClient;
     db: mongodb.Db;
     constructor() {
-        this.client = new mongodb.MongoClient("mongodb://root:example@localhost", {
-            useUnifiedTopology: true,
-        });
+        this.client = new mongodb.MongoClient(
+            process.env.MONGO_URL || "mongodb://root:example@localhost",
+            {
+                useUnifiedTopology: true,
+            }
+        );
     }
     public async start() {
         this.client = await this.client.connect();
-        this.db = this.client.db("minicount");
+        this.db = this.client.db(process.env.MONGO_DBNAME || "emmajordome");
         return;
     }
+
     get components() {
         return {
             tasks: new task.Tasks(this.db),
