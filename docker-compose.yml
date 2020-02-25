@@ -5,6 +5,8 @@ services:
       context: .
     restart: on-failure
     env_file: conf.env
+    links:
+      - "database"
 
   database:
     image: mongo
