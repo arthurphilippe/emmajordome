@@ -45,6 +45,7 @@ import Db from "./Db";
     bot.use(stage.middleware());
 
     bot.command("newtask", (ctx) => ctx.scene.enter("createTask"));
+    bot.command("listtasks", (ctx) => ctx.scene.enter("listTasks"));
 
     bot.on("message", (ctx) => {
         ctx.reply("Not sure what you are trying to do... Have a look at available commands.");
