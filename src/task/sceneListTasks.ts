@@ -22,7 +22,7 @@ listTask.enter(async (ctx) => {
 
     tasks.forEach((task, idx) => {
         let sufix = ";";
-        if (idx == tasks.length) sufix = ".";
+        if (idx == tasks.length - 1) sufix = ".";
         let hours = task.nextOn.getHours();
         let minutes = task.nextOn.getMinutes();
         builder.push(`- /${idx + 1} ${task.name} at ${hours}:${minutes}${sufix}`);
@@ -55,7 +55,7 @@ listTask.on("text", (ctx) => {
 
     let res = RegExp(/\/(\d+)/).exec(ctx.message.text);
     console.log(res);
-    if (res || res.length >= 2) {
+    if (res && res.length >= 2) {
         let idx = parseInt(res[1]);
         if (isNaN(idx)) {
             ctx.reply(`${res[1]} is not a number...`);
