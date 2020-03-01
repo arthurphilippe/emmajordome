@@ -21,11 +21,9 @@ listTask.enter(async (ctx) => {
     builder.push("Here are you tasks:");
 
     tasks.forEach((task, idx) => {
-        let sufix = ";";
-        if (idx == tasks.length - 1) sufix = ".";
-        let hours = task.nextOn.getHours();
-        let minutes = task.nextOn.getMinutes();
-        builder.push(`- /${idx + 1} ${task.name} at ${hours}:${minutes}${sufix}`);
+        let nextOn = moment(task.nextOn);
+
+        builder.push(`- /${idx + 1} ${task.name} at ${nextOn.format("HH:mm")}`);
     });
 
     (ctx.scene.state as State).tasks = tasks;
@@ -63,11 +61,10 @@ listTask.on("text", (ctx) => {
             // idx += 1;
             state.idx = idx;
 
-            let hours = state.tasks[idx - 1].nextOn.getHours();
-            let minutes = state.tasks[idx - 1].nextOn.getMinutes();
+            let nextOn = moment(state.tasks[idx - 1].nextOn);
 
             ctx.reply(
-                `Selected: ${state.tasks[idx - 1].name} (${hours}:${minutes}).\n` +
+                `Selected: ${state.tasks[idx - 1].name} (at ${nextOn.format("HH:mm")}).\n` +
                     `You can /delete it.`
             );
         } else {

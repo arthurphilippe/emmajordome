@@ -77,7 +77,6 @@ export class Scheduler {
             this.tasks.collection.updateOne({ _id: ta._id }, { $set: { nextOn: ta.nextOn } });
         });
         let result = await this.db.components.occurences.collection.insertMany(occurences);
-        console.warn(result);
         messages.forEach((msg) => msg());
         // tasks.forEach((ta) => {
         //     this.api.sendMessage(
@@ -89,6 +88,7 @@ export class Scheduler {
         //         ]).extra()
         //     );
         // });
+        this.schedule();
     }
 }
 

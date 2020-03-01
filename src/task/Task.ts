@@ -1,5 +1,6 @@
 import * as mongodb from "mongodb";
 import * as telegraf from "telegraf_acp_fork";
+import moment = require("moment");
 
 export default interface Task {
     _id: mongodb.ObjectID;
@@ -39,7 +40,9 @@ export function isOccurence(x: any): x is Occurence {
 }
 
 export function toSimpleString(task: Task): string {
-    return `- ${task.name} at ${task.nextOn.getHours()}:${task.nextOn.getMinutes()}`;
+    let nextOn = moment(task.nextOn);
+
+    return `- ${task.name} at ${nextOn.format("HH:mm")}`;
 }
 
 export class Tasks {
