@@ -8,12 +8,20 @@ services:
     links:
       - "database"
 
-  database:
-    image: mongo
-    restart: always
-    volumes:
-      - "mongodata:/data/db"
-    env_file: conf.env
+  labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.emmajordome.rule=(Host(`bots.arthurphilippe.me`) && PathPrefix(`/emmajordome`))"
+    # - "traefik.http.routers.emmajordome.middlewares=api-stripprefix"
+    # - "traefik.http.middlewares.api-stripprefix.stripprefix.prefixes=/emmajormome"
+    - "traefik.http.routers.emmajordome.entrypoints=websecure"
+    - "traefik.http.routers.emmajordome.tls.certresolver=le"
+    - "traefik.http.services.emmajordome.loadbalancer.server.port=443"
+  # database:
+  #   image: mongo
+  #   restart: always
+  #   volumes:
+  #     - "mongodata:/data/db"
+  #   env_file: conf.env
 
 volumes:
   mongodata:
