@@ -46,6 +46,7 @@ export class Scheduler {
     }
 
     async createOccurances() {
+        console.log("creatingOccurances");
         this.timeout = undefined;
 
         let tasks = await this.findDueTasks();
