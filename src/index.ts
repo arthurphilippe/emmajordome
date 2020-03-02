@@ -57,11 +57,12 @@ import Db from "./Db";
         console.error(err);
         db.client.close();
     });
-    bot.launch({
-        webhook: {
-            hookPath: "bots.arthurphilippe.me:443/emmajordome",
-            port: 443,
-        },
-    });
-    // bot.startPolling();
+    // bot.launch({
+    //     webhook: {
+    //         hookPath: "bots.arthurphilippe.me:443/emmajordome",
+    //         port: 443,
+    //     },
+    // });
+    bot.startWebhook("");
+    bot.startPolling();
 })();
