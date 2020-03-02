@@ -39,7 +39,7 @@ listTask.command("delete", async (ctx, next) => {
 
         if (result.deletedCount == 1) {
             ctx.reply("🟢 Task deleted!");
-            ctx.scene.leave();
+            ctx.scene.reenter();
         } else {
             ctx.reply("🔴 Error while deleting. You can re-run /delete or /cancel.");
         }
@@ -48,7 +48,7 @@ listTask.command("delete", async (ctx, next) => {
     }
 });
 
-listTask.on("text", (ctx) => {
+listTask.on("text", (ctx, next) => {
     let state = ctx.scene.state as State;
 
     let res = RegExp(/\/(\d+)/).exec(ctx.message.text);
@@ -71,6 +71,7 @@ listTask.on("text", (ctx) => {
             ctx.reply(`There is no more than ${state.tasks.length} tasks availables`);
         }
     } else {
+        next();
         // not handled
     }
 });

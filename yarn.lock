@@ -9,13 +9,6 @@
   dependencies:
     "@types/node" "*"
 
-"@types/moment@^2.13.0":
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/@types/moment/-/moment-2.13.0.tgz#604ebd189bc3bc34a1548689404e61a2a4aac896"
-  integrity sha1-YE69GJvDvDShVIaJQE5hoqSqyJY=
-  dependencies:
-    moment "*"
-
 "@types/mongodb@^3.3.14":
   version "3.3.14"
   resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-3.3.14.tgz#5b44bf16b5856eb829545edcc2c4d7726b44b864"
@@ -109,7 +102,7 @@ module-alias@^2.2.2:
   resolved "https://registry.yarnpkg.com/module-alias/-/module-alias-2.2.2.tgz#151cdcecc24e25739ff0aa6e51e1c5716974c0e0"
   integrity sha512-A/78XjoX2EmNvppVWEhM2oGk3x4lLxnkEA4jTbaK97QKSDjkIoOsKQlfylt/d3kKKi596Qy3NP5XrXJ6fZIC9Q==
 
-moment@*, moment@^2.24.0:
+moment@^2.24.0:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
@@ -222,10 +215,10 @@ string_decoder@~1.1.1:
   dependencies:
     safe-buffer "~5.1.0"
 
-telegraf_acp_fork@^3.36.2:
-  version "3.36.2"
-  resolved "https://registry.yarnpkg.com/telegraf_acp_fork/-/telegraf_acp_fork-3.36.2.tgz#60d10529315a5425d6a8238438267ecad20585c3"
-  integrity sha512-rgEZCrQNGemtlAvVfdVkYKtYFQclxZ5A0Hm44NVCIiI6v6wz54VkkOY8+6eFqrw+j8OEDxDMwvUxEH1wuVWYuA==
+telegraf_acp_fork@^3.36.4:
+  version "3.36.4"
+  resolved "https://registry.yarnpkg.com/telegraf_acp_fork/-/telegraf_acp_fork-3.36.4.tgz#2be624574cf880cf3f6da06c7eb4dbd76eb88e99"
+  integrity sha512-axJBKTbRqYdDoVLEyavkpDGptPALlM3VIwTOa1pEwpf1Ptn049g1AcSKIZgVWp95CtBK52uP0it2cT96nZJIIA==
   dependencies:
     debug "^4.0.1"
     minimist "^1.2.0"

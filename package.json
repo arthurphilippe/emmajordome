@@ -18,6 +18,6 @@
         "currency.js": "^1.2.2",
         "moment": "^2.24.0",
         "mongodb": "^3.5.2",
-        "telegraf_acp_fork": "^3.36.2"
+        "telegraf_acp_fork": "^3.36.4"
     }
 }

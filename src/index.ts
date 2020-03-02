@@ -1,4 +1,5 @@
 import * as telegraf from "telegraf_acp_fork";
+import moment = require("moment");
 
 interface Operations {
     name: string;
@@ -40,7 +41,9 @@ import Db from "./Db";
     task.register(stage);
 
     stage.command("cancel", (ctx) => {
+        ctx.reply("Canceling current task and going back home.");
         ctx.scene.leave(false);
+        ctx.scene.reset(false);
     });
     bot.use(stage.middleware());
 
@@ -64,7 +67,8 @@ import Db from "./Db";
     //     },
     // });
     bot.startWebhook("");
-    bot.startPolling(15, undefined, undefined, () => {
-        console.log("polling stop?");
-    });
+    setInterval(() => {
+        console.log("5 min interval...", moment().format(" D-MM-YYYY, H:mm"));
+    }, 1000 * 60 * 5);
+    bot.startPolling();
 })();
