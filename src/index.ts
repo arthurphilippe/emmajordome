@@ -64,5 +64,7 @@ import Db from "./Db";
     //     },
     // });
     bot.startWebhook("");
-    bot.startPolling();
+    bot.startPolling(15, undefined, undefined, () => {
+        console.log("polling stop?");
+    });
 })();
