@@ -68,8 +68,8 @@ export class Scheduler {
                     ta.referenceId,
                     `🔔 ${ta.name}`,
                     telegraf.Markup.inlineKeyboard([
-                        telegraf.Markup.callbackButton("✅", `task;complete;${id.toHexString()}`),
                         telegraf.Markup.callbackButton("❌", `task;cancel;${id.toHexString()}`),
+                        telegraf.Markup.callbackButton("✅", `task;complete;${id.toHexString()}`),
                     ]).extra()
                 )
             );

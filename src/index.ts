@@ -19,10 +19,12 @@ import Db from "./Db";
     let db = new Db();
     await db.start();
 
+    let scheduler = new task.Scheduler(bot.telegram, db);
+    scheduler.schedule();
+
     bot.use((ctx, next) => {
         db.middleware(ctx, next);
-        ctx.taskSceduler = new task.Scheduler(ctx.telegram, db);
-        ctx.taskSceduler.schedule();
+        ctx.taskSceduler = scheduler;
     });
     bot.use(telegraf.session<myContext>());
 
