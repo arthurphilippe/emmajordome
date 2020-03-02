@@ -5,8 +5,8 @@ services:
       context: .
     restart: on-failure
     env_file: conf.env
-    links:
-      - "database"
+    # links:
+    #   - "database"
 
     labels:
       - "traefik.enable=true"
