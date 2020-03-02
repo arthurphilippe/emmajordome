@@ -52,7 +52,6 @@ listTask.on("text", (ctx, next) => {
     let state = ctx.scene.state as State;
 
     let res = RegExp(/\/(\d+)/).exec(ctx.message.text);
-    console.log(res);
     if (res && res.length >= 2) {
         let idx = parseInt(res[1]);
         if (isNaN(idx)) {
