@@ -47,8 +47,42 @@ export function toSimpleString(task: Task): string {
 
 export class Tasks {
     public collection: mongodb.Collection<Task>;
+    public occurenceCol: mongodb.Collection<Occurence>;
+
     constructor(dbclient: mongodb.Db) {
         this.collection = dbclient.collection<Task>("tasks");
+        this.occurenceCol = dbclient.collection<Occurence>("occurences");
+    }
+
+    async generateDetails(item: Task) {
+        let completedProm = this.occurenceCol.countDocuments({
+            task: item._id,
+            closureKind: closureType.Completed,
+        });
+        let canceledProm = this.occurenceCol.countDocuments({
+            task: item._id,
+            closureKind: closureType.Canceled,
+        });
+        let missedProm = this.occurenceCol.countDocuments({
+            task: item._id,
+            closureKind: closureType.Missed,
+        });
+
+        let completed = await completedProm;
+        let canceled = await canceledProm;
+        let missed = await missedProm;
+        let builder: string[] = [];
+
+        let nextOn = moment(item.nextOn);
+
+        builder.push(`Selected: ${item.name} (at ${nextOn.format("HH:mm")}).`);
+        builder.push(`- completed: ${completed};`);
+        builder.push(`- canceled: ${canceled};`);
+        builder.push(`- missed: ${missed}.`);
+        builder.push(
+            `You can /delete it, select another task from up-top or /cancel all-together.`
+        );
+        return builder.join("\n");
     }
 }
 

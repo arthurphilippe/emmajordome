@@ -48,7 +48,7 @@ listTask.command("delete", async (ctx, next) => {
     }
 });
 
-listTask.on("text", (ctx, next) => {
+listTask.on("text", async (ctx, next) => {
     let state = ctx.scene.state as State;
 
     let res = RegExp(/\/(\d+)/).exec(ctx.message.text);
@@ -60,12 +60,9 @@ listTask.on("text", (ctx, next) => {
             // idx += 1;
             state.idx = idx;
 
-            let nextOn = moment(state.tasks[idx - 1].nextOn);
+            // let nextOn = moment(state.tasks[idx - 1].nextOn);
 
-            ctx.reply(
-                `Selected: ${state.tasks[idx - 1].name} (at ${nextOn.format("HH:mm")}).\n` +
-                    `You can /delete it.`
-            );
+            ctx.reply(await ctx.tasks.generateDetails(state.tasks[idx - 1]));
         } else {
             ctx.reply(`There is no more than ${state.tasks.length} tasks availables`);
         }

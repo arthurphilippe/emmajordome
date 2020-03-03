@@ -1,6 +1,6 @@
 import Db from "../Db";
 import moment = require("moment");
-import Task, { Occurence, Tasks } from "./Task";
+import Task, { Occurence, Tasks, closureType } from "./Task";
 import * as mongodb from "mongodb";
 import * as telegraf from "telegraf_acp_fork";
 
@@ -77,18 +77,25 @@ export class Scheduler {
             bumpTaskDate(ta);
             this.tasks.collection.updateOne({ _id: ta._id }, { $set: { nextOn: ta.nextOn } });
         });
-        let result = await this.db.components.occurences.collection.insertMany(occurences);
+        await this.db.components.occurences.collection.insertMany(occurences);
         messages.forEach((msg) => msg());
-        // tasks.forEach((ta) => {
-        //     this.api.sendMessage(
-        //         ta.referenceId,
-        //         `🔔 ${ta.name}`,
-        //         telegraf.Markup.inlineKeyboard([
-        //             telegraf.Markup.callbackButton("✅", `task;complete;${id.toHexString()}`),
-        //             telegraf.Markup.callbackButton("❌", `task;cancel;${id.toHexString()}`),
-        //         ]).extra()
-        //     );
-        // });
+
+        this.db.components.occurences.collection.updateMany(
+            {
+                on: {
+                    $lt: moment()
+                        .subtract(1, "day")
+                        .toDate(),
+                },
+            },
+            {
+                $set: {
+                    closed: new Date(),
+                    closureKind: closureType.Missed,
+                },
+            }
+        );
+
         this.schedule();
     }
 }
