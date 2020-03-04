@@ -1,5 +1,6 @@
 import * as mongodb from "mongodb";
 import * as telegraf from "telegraf_acp_fork";
+import myContext from "../Context";
 import moment = require("moment");
 
 export default interface Task {
@@ -143,6 +144,25 @@ export class Occurences {
             prefix = "✅";
         }
 
-        return `${prefix} ${name}`;
+        if (!detailed) return `${prefix} ${name}`;
+        let on = moment(item.on);
+        return `${prefix} ${name} at ${on.format("HH:mm")}`;
+    }
+
+    async sendOpenIssues(ctx: myContext) {
+        let occurences = await this.collection
+            .find({ referenceId: ctx.chat.id, closed: null })
+            .toArray();
+
+        console.log(occurences);
+
+        occurences.forEach(async (element) => {
+            ctx.reply(
+                await this.generateMessage(element, true),
+                telegraf.Markup.inlineKeyboard(
+                    ctx.occurences.generateInlineButtons(element)
+                ).extra()
+            );
+        });
     }
 }
