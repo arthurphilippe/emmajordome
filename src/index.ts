@@ -69,8 +69,5 @@ import Db from "./Db";
     //     },
     // });
     bot.startWebhook("");
-    setInterval(() => {
-        console.log("5 min interval...", moment().format(" D-MM-YYYY, H:mm"));
-    }, 1000 * 60 * 5);
     bot.startPolling();
 })();

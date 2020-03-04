@@ -87,6 +87,7 @@ export class Scheduler {
                         .subtract(1, "day")
                         .toDate(),
                 },
+                closed: null,
             },
             {
                 $set: {
