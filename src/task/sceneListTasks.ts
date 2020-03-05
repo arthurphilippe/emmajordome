@@ -29,7 +29,6 @@ listTask.enter(async (ctx) => {
     (ctx.scene.state as State).tasks = tasks;
 
     builder.push("Either select a task or /cancel");
-    ctx.occurences.sendOpenIssues(ctx);
 
     ctx.reply(builder.join("\n"));
 });

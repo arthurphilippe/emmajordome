@@ -51,6 +51,7 @@ import Db from "./Db";
 
     bot.command("newtask", (ctx) => ctx.scene.enter("createTask"));
     bot.command("listtasks", (ctx) => ctx.scene.enter("listTasks"));
+    bot.command("listoccurences", (ctx) => ctx.occurences.sendOpenIssues(ctx));
 
     bot.on("message", (ctx) => {
         ctx.reply("Not sure what you are trying to do... Have a look at available commands.");
